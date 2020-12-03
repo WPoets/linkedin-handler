@@ -19,7 +19,7 @@
         "php": ">=7.0",
         "composer/installers": "~1.0",
         "oomphinc/composer-installers-extender": "^2.0",
-        "zoonman/linkedin-api-php-client": "^0.0.14"
+        "samoritano/linkedin-api-php-client-v2": "^0.0.17"
     },
 	 "extra": { 
 		"installer-name": "linkedin"

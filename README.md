@@ -1,6 +1,17 @@
-# Linkedin Handler
+<p align="center">
+<a href="https://www.wpoets.com/" target="_blank"><img width="200"src="https://www.wpoets.com/wp-content/uploads/2018/05/WPoets-logo-1.svg"></a>
+</p>
+
+# Linkedin Handler for Awesome Enterprise
 Add support of LinkedIn API in Awesome Enterprise, introduces linkedin shortcode
 
+### Changelog  
+
+##### 1.0.1
+* Fixed: Switched the api library to a fork maintained at  https://github.com/samoritano/linkedin-api-php-client
+  
+##### 1.0.0  
+* Initial release
 
 ### Issues 
 
@@ -39,3 +50,9 @@ Then here is what you can do to resolve it
 4. then remove the refernce of guzzle.
 
 
+
+## We're Hiring!
+
+<p align="center">
+<a href="https://www.wpoets.com/careers/"><img src="https://www.wpoets.com/wp-content/uploads/2020/11/work-with-us_1776x312.png" alt="Join us at WPoets, We specialize in designing, building and maintaining complex enterprise websites and portals in WordPress."></a>
+</p>

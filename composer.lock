@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00027308819c2cef73a2505d094c003d",
+    "content-hash": "f128ee89bf2a73710db4144d2a18b29c",
     "packages": [
         {
             "name": "composer/installers",
@@ -503,6 +503,101 @@
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
+            "name": "samoritano/linkedin-api-php-client-v2",
+            "version": "0.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/samoritano/linkedin-api-php-client.git",
+                "reference": "2d25a96855758976bcd878f8547f31ae445566bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/samoritano/linkedin-api-php-client/zipball/2d25a96855758976bcd878f8547f31ae445566bb",
+                "reference": "2d25a96855758976bcd878f8547f31ae445566bb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "guzzlehttp/guzzle": "^6.3",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "@stable",
+                "vlucas/phpdotenv": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LinkedIn\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samori Bokoko",
+                    "email": "samori@bokokode.com",
+                    "homepage": "https://bokokode.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Philipp Tkachev",
+                    "email": "philipp@zoonman.com",
+                    "homepage": "http://www.zoonman.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Aleksey Salnikov",
+                    "email": "me@iamsalnikov.ru",
+                    "homepage": "http://iamsalnikov.ru/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Daniel J. Post",
+                    "homepage": "http://danieljpost.info/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "LinkedIn V2 Marketing API PHP SDK with OAuth 2.0 & CSRF support. Can be used for social sign in or sharing on LinkedIn",
+            "homepage": "https://github.com/samoritano/linkedin-api-php-client",
+            "keywords": [
+                "Authentication",
+                "api",
+                "auth",
+                "authorization",
+                "client",
+                "integration",
+                "linked in",
+                "linkedin",
+                "linkedin-api",
+                "linkedin-client",
+                "linkedin-login",
+                "linkedin-sdk",
+                "linkedin-signin",
+                "linkedin.com",
+                "oauth",
+                "oauth2",
+                "oauth2-authentication",
+                "oauth2-client",
+                "php-linkedin",
+                "platform",
+                "rest",
+                "social",
+                "social network",
+                "wrapper"
+            ],
+            "support": {
+                "docs": "https://github.com/samoritano/linkedin-api-php-client/blob/master/README.md",
+                "issues": "https://github.com/samoritano/linkedin-api-php-client/issues",
+                "source": "https://github.com/samoritano/linkedin-api-php-client"
+            },
+            "time": "2020-09-26T09:04:40+00:00"
+        },
+        {
             "name": "symfony/polyfill-intl-idn",
             "version": "v1.20.0",
             "source": {
@@ -748,96 +843,6 @@
                 }
             ],
             "time": "2020-10-23T14:02:19+00:00"
-        },
-        {
-            "name": "zoonman/linkedin-api-php-client",
-            "version": "0.0.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zoonman/linkedin-api-php-client.git",
-                "reference": "cca1103184957808ba3abe57d00945a39b782401"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zoonman/linkedin-api-php-client/zipball/cca1103184957808ba3abe57d00945a39b782401",
-                "reference": "cca1103184957808ba3abe57d00945a39b782401",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "guzzlehttp/guzzle": "^6.3",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "@stable",
-                "vlucas/phpdotenv": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LinkedIn\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Philipp Tkachev",
-                    "email": "philipp@zoonman.com",
-                    "homepage": "http://www.zoonman.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Aleksey Salnikov",
-                    "email": "me@iamsalnikov.ru",
-                    "homepage": "http://iamsalnikov.ru/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Daniel J. Post",
-                    "homepage": "http://danieljpost.info/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "LinkedIn API PHP SDK with OAuth 2.0 & CSRF support. Can be used for social sign in or sharing on LinkedIn. Examples. Documentation.",
-            "homepage": "https://github.com/zoonman/linkedin-api-php-client",
-            "keywords": [
-                "Authentication",
-                "api",
-                "auth",
-                "authorization",
-                "client",
-                "integration",
-                "linked in",
-                "linkedin",
-                "linkedin-api",
-                "linkedin-client",
-                "linkedin-login",
-                "linkedin-sdk",
-                "linkedin-signin",
-                "linkedin.com",
-                "oauth",
-                "oauth2",
-                "oauth2-authentication",
-                "oauth2-client",
-                "php-linkedin",
-                "platform",
-                "rest",
-                "social",
-                "social network",
-                "wrapper"
-            ],
-            "support": {
-                "docs": "https://www.zoonman.com/projects/linkedin-client/",
-                "issues": "https://github.com/zoonman/linkedin-api-php-client/issues",
-                "source": "https://github.com/zoonman/linkedin-api-php-client",
-                "wiki": "https://github.com/zoonman/linkedin-api-php-client/wiki"
-            },
-            "time": "2018-05-11T03:54:55+00:00"
         }
     ],
     "packages-dev": [],
