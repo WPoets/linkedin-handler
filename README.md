@@ -7,6 +7,9 @@ Add support of LinkedIn API in Awesome Enterprise, introduces linkedin shortcode
 
 ### Changelog  
 
+##### 1.0.2
+* Fixed: Switched to the oauth 2.0 php library at https://github.com/thephpleague/oauth2-client
+
 ##### 1.0.1
 * Fixed: Switched the api library to a fork maintained at  https://github.com/samoritano/linkedin-api-php-client
   
