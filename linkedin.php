@@ -1,12 +1,6 @@
 <?php
 namespace aw2\linkedin;
 
-use LinkedIn\AccessToken;
-use LinkedIn\Client;
-use LinkedIn\Scope;
-use LinkedIn\AbstractEnum;
-
-
 \aw2_library::add_service('linkedin','linkedin api support',['namespace'=>__NAMESPACE__]);
 
 
@@ -21,23 +15,33 @@ function login_url($atts,$content=null,$shortcode){
 	'app_secret'=>null
 	), $atts) );
 	
+	$redirect_url = SITE_URL.'?social_auth=linkedin';
+	
 	if(empty($ticket_id)) return '';
 	if(empty($app_id) || empty($app_secret)) return '';	
-		
-	//require_once AWESOME_PATH.'/vendor/autoload.php';
 	
 	$return_value='';
 	
-	$client = new Client($app_id,$app_secret) ;
+	$provider = new \League\OAuth2\Client\Provider\LinkedIn([
+		'clientId'          =>  $app_id,
+		'clientSecret'      =>  $app_secret,
+		'redirectUri'       =>  $redirect_url,
+	]);
 	
 	$scope = \aw2\session_ticket\get(["main"=>$ticket_id,"field"=>'scope'],null,null);
-	$scopes= explode(',',$scope);
+	//$scopes= explode(',',$scope);
 	
-	$client->setRedirectUrl(SITE_URL.'?social_auth=linkedin');
-    $return_value = $client->getLoginUrl($scopes); // get url on LinkedIn to start linking
+	$options = [
+        'state' => 'OPTIONAL_CUSTOM_CONFIGURED_STATE',
+        'scope' => $scope // array or string
+    ];
+	
+	$authorizationUrl = $provider->getAuthorizationUrl($options);
+	$return_value = $provider->getAuthorizationUrl($options);
   
-    \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'state',"value"=>$client->getState()],null,null); // save state for future validation
-    \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'redirect_url',"value"=>$client->getRedirectUrl()],null,null); // save state for future validation
+    \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'state',"value"=>$provider->getState()],null,null); // save state for future validation
+	
+    \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'redirect_url',"value"=>$redirect_url],null,null); // save state for future validation
 	
 	$return_value=\aw2_library::post_actions('all',$return_value,$atts);
 	return $return_value;	
@@ -55,11 +59,10 @@ function auth($atts,$content=null,$shortcode){
 	'app_secret'=>null
 	), $atts) );
 	
+	$redirect_url = SITE_URL.'?social_auth=linkedin';
+	
 	if(empty($ticket_id)) return '';
 	if(empty($app_id) || empty($app_secret)) return '';	
-	
-	
-	//require_once AWESOME_PATH.'/vendor/autoload.php';
 	
 	
 	if (isset($_GET['error']) || !isset($_GET['code'])) {
@@ -68,25 +71,34 @@ function auth($atts,$content=null,$shortcode){
 	  return;
 	}
 		
-	
-	$client = new Client($app_id,$app_secret) ;
+	$provider = new \League\OAuth2\Client\Provider\LinkedIn([
+		'clientId'          =>  $app_id,
+		'clientSecret'      =>  $app_secret,
+		'redirectUri'       =>  $redirect_url,
+	]);
 	
 	 try {
             // you have to set initially used redirect url to be able
             // to retrieve access token
-            $client->setRedirectUrl(SITE_URL.'?social_auth=linkedin');
             // retrieve access token using code provided by LinkedIn
-            $accessToken = $client->getAccessToken($_GET['code']);
+            $accessToken = $provider->getAccessToken('authorization_code', [
+				'code' => $_GET['code']
+			]);
+			
            \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'access_token',"value"=>$accessToken],null,null);
-            // perform api call to get profile information
-            $return_value = $client->get(
-                'people/~:(id,email-address,first-name,last-name,public-profile-url,picture-url)'
-            );
-           
+		   
+			$user = $provider->getResourceOwner($accessToken);
+
+			$return_value['firstName'] = $user->getFirstName();
+			$return_value['lastName'] = $user->getLastName();
+			$return_value['id'] = $user->getId();
+			$return_value['emailAddress'] = $user->getEmail();
+			$return_value['publicProfileUrl'] = $user->getUrl();
+			$return_value['pictureUrl'] = $user->getImageUrl();
             
-        } catch (\LinkedIn\Exception $exception) {
+        } catch (Exception $exception) {
             // in case of failure, provide with details
-             \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'status',"value"=>'error'],null,null);
+            \aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'status',"value"=>'error'],null,null);
 			\aw2\session_ticket\set(["main"=>$ticket_id,"field"=>'description',"value"=>$exception->getMessage()],null,null);
 			return;
         }
